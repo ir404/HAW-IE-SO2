@@ -12,7 +12,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 public class TestDrawingTool {
-    private final JFrame applicationFrame;
+    private JFrame applicationFrame;
 
     public TestDrawingTool(String title) {
         applicationFrame = new JFrame(title);

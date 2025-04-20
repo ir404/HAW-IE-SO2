@@ -26,7 +26,7 @@ public class DrawingArea extends JPanel {
         pen.fillOval(300, 234, 400, 500);
 
         pen.setColor(new Color(255, 100, 100)); // RGB representation
-        pen.drawString("Hello World", 666, 280);
+        pen.drawString("Hello World!", 666, 280);
 
         int[] xCoords = {850, 750, 950};
         int[] yCoords = {50, 100, 100};
