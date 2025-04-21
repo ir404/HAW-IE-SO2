@@ -11,7 +11,7 @@ public class Leg {
         this.colour = colour;
     }
 
-    public void draw(int left, int bottom) {        // 700, 650
+    public void drawAt(int left, int bottom) {        // 700, 650
         int[] xCoords = {left, left, left - 75, left + 100, left + 75};
         int[] yCoords = {bottom, bottom + 50, bottom + 75, bottom + 75, bottom};
 

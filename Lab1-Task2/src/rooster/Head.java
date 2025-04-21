@@ -1,7 +1,6 @@
 package rooster;
 
 import java.awt.*;
-import javax.swing.*;
 
 public class Head {
     private final Graphics pen;
@@ -24,7 +23,7 @@ public class Head {
         pen.setColor(Color.BLACK);
         pen.drawOval(left, bottom, 250, 250);
 
-        // draw the other parts of the head
+        // drawAt the other parts of the head
         beak.drawAt(left, bottom + 100);
         eye.drawAt(left + 50, bottom + 35);
         comb.drawAt(left + 110, bottom);

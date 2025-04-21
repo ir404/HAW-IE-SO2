@@ -25,7 +25,7 @@ public class Body {
         this.pen.drawPolygon(xCoords, yCoords, 7);
 
         // now drawAt the wing and leg
-        this.wing.draw(left + 50, bottom);
-        this.leg.draw(left + 100, bottom + 300);
+        this.wing.drawAt(left + 50, bottom);
+        this.leg.drawAt(left + 100, bottom + 300);
     }
 }

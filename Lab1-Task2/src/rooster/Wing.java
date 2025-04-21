@@ -12,7 +12,7 @@ public class Wing {
         this.colour = colour;
     }
 
-    public void draw(int left, int bottom) {        // 650, 350
+    public void drawAt(int left, int bottom) {        // 650, 350
         int[] xCoords = {left, left + 50, left + 100, left + 250};
         int[] yCoords = {bottom, bottom + 150, bottom + 150, bottom};
 
