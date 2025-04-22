@@ -22,5 +22,12 @@ public class Tail {
         pen.fillArc(left + 10, bottom + 100, 200, 300, 0, 180);
         pen.setColor(Color.decode("#eeeeee"));
         pen.fillArc(left + 10, bottom + 150, 200, 200, 0, 180);
+        
+        // black outlines
+        pen.setColor(Color.BLACK);
+        pen.drawArc(left, bottom, 300, 500, 0, 180);
+        pen.drawArc(left + 10, bottom + 100, 200, 300, 0, 180);
+        pen.drawArc(left, bottom + 50, 300, 400, 0, 180);
+        pen.drawArc(left + 10, bottom + 150, 200, 200, 0, 180);
     }
 }
