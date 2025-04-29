@@ -17,8 +17,9 @@ public class DrawingArea extends JPanel {
 
     protected void paintComponent(Graphics pen) {
         super.paintComponent(pen);
+        Drawing.set(pen);
 
-        Rooster ricky = new Rooster(pen, "Ricky", Color.ORANGE, Color.RED, Color.YELLOW);
+        Rooster ricky = new Rooster("Ricky", Color.ORANGE, Color.RED, Color.YELLOW);
         ricky.drawAt(450, 125);
     }
 }
