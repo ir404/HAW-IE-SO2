@@ -4,17 +4,19 @@ import java.awt.*;
 import drawingTool.Drawing;
 
 public class Eye {
-    private final Color outer, inner;
+    private Color outer, inner;
+    private final int OUTER_DIAMETER = 20;
+    private final int INNER_DIAMETER = 10;
 
     public Eye(Color outer, Color inner) {
         this.outer = outer;
         this.inner = inner;
     }
 
-    public void drawAt(int left, int bottom) {      // 550, 135
+    public void drawAt(int left, int bottom) {
     	Drawing.pen().setColor(this.outer);
-    	Drawing.pen().fillOval(left, bottom, 50, 50);
+    	Drawing.pen().fillOval(left, bottom, OUTER_DIAMETER, OUTER_DIAMETER);
     	Drawing.pen().setColor(this.inner);
-    	Drawing.pen().fillOval(left + 10, bottom + 10, 25, 25);
+    	Drawing.pen().fillOval(left + 5, bottom + 5, INNER_DIAMETER, INNER_DIAMETER);
     }
 }

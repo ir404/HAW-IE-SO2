@@ -13,13 +13,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawingArea extends JPanel {
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
 
     protected void paintComponent(Graphics pen) {
         super.paintComponent(pen);
         Drawing.set(pen);
 
-        Rooster ricky = new Rooster("Ricky", Color.ORANGE, Color.RED, Color.YELLOW);
-        ricky.drawAt(450, 125);
+        Rooster ricky = new Rooster("Ricky", Color.ORANGE, Color.RED);
+        ricky.drawAt(0, 0);
     }
 }
