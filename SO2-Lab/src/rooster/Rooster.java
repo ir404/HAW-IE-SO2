@@ -13,11 +13,6 @@ public class Rooster implements LocatedRectangle {
     private Head head;      // composite
     private Body body;      // composite
 
-    public Rooster(Point placeAt, String roosterName) {
-        position = placeAt;
-        name = roosterName;
-    }
-
     public Rooster(Point placeAt, String roosterName, Color headColour, Color bodyColour, Color wingColour, Color legColour, Color tailColour) {
         position = placeAt;
         name = roosterName;
