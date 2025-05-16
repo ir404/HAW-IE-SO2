@@ -11,7 +11,7 @@ public class Scene {
     public void drawRoosters(int roosterCount) {
         for (int i = 0; i < roosterCount; ++i) {
             Point placeAt = new Point(250 * i, 150 * i);
-            Rooster tempRooster = new Rooster(placeAt, "Rooster " + i, Color.ORANGE, Color.RED, Color.GREEN, Color.ORANGE, Color.ORANGE);
+            Rooster tempRooster = new Rooster(placeAt, "Rooster " + i, Color.YELLOW, Color.ORANGE, Color.YELLOW, Color.RED, Color.RED);
 
             if (i > 0) {
                 if (!roosters.get(roosters.size() - 1).intersects(tempRooster)) {

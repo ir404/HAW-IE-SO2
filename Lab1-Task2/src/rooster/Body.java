@@ -3,6 +3,7 @@ package rooster;
 import java.awt.*;
 
 import drawingTool.Drawing;
+import drawingTool.RandomNumber;
 
 public class Body {
     private Color colour;
@@ -12,10 +13,15 @@ public class Body {
     private Tail tail;              // composite
 
     public Body(Color colour, Color wingColour, Color legColour, Color tailColour) {
+        int number = RandomNumber.between(0, 10);
         this.colour = colour;
-        wing = new Wing(wingColour);
         leg = new Leg(legColour);
         tail = new Tail(tailColour);
+
+        if (number % 2 == 0 || number % 3 == 0)
+            rocketWing = new RocketWing(wingColour, Color.RED);
+        else
+            wing = new Wing(wingColour);
     }
 
     public void drawAt(int left, int bottom) {
@@ -25,7 +31,11 @@ public class Body {
         Drawing.pen().setColor(this.colour);
         Drawing.pen().fillPolygon(xCoords, yCoords, 7);
 
-        wing.drawAt(left + 25, bottom);
+        if (wing != null)
+            wing.drawAt(left + 25, bottom);
+        else
+            rocketWing.drawAt(left + 25, bottom);
+
         leg.draw(left + 50, bottom + 150);
         tail.drawAt(left + 200, bottom);
     }
