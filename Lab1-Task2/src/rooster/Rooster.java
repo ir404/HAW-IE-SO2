@@ -29,8 +29,6 @@ public class Rooster implements LocatedRectangle {
         Drawing.pen().setColor(Color.BLACK);
         Drawing.pen().drawString(name, position.x + 150, position.y + 50);
 
-        Drawing.pen().drawRect(position.x, position.y, WIDTH, HEIGHT);
-
         head.drawAt(position.x, position.y);
         body.drawAt(position.x + 75, position.y + 125);
     }

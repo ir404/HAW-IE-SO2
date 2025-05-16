@@ -12,7 +12,7 @@ public class Body {
     private Tail tail;                  // composite
 
     public Body(Color colour, Color wingColour, Color bootColour, Color tailColour) {
-        int number = RandomNumber.between(1, 30);
+        int number = RandomNumber.between(1, 50);
         this.colour = colour;
         boot = new Boot(bootColour);
         tail = new Tail(tailColour);
