@@ -13,12 +13,12 @@ public class Beak {
     }
 
     public void drawAt(int left, int bottom) {
-        int[] xCoords = {left, left - 25, left - 25, left};
-        int[] yCoords = {bottom, bottom + 15, bottom + 15, bottom + 25};
+        int[] xCoords = {left, left + 25, left + 25, left};
+        int[] yCoords = {bottom, bottom - 15, bottom + 15, bottom};
 
         Drawing.pen().setColor(this.colour);
         Drawing.pen().fillPolygon(xCoords, yCoords, 4);
 
-        hackle.drawAt(left - 5, bottom + 25);
+        hackle.drawAt(left + 20, bottom + 15);
     }
 }

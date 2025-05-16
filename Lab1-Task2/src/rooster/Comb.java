@@ -11,8 +11,8 @@ public class Comb {
     }
 
     public void drawAt(int left, int bottom) {
-        int[] xCoords = {left, left + 25, left + 25, left};
-        int[] yCoords = {bottom, bottom - 25, bottom, bottom};
+        int[] xCoords = {left, left - 25, left, left};
+        int[] yCoords = {bottom, bottom + 25, bottom + 25, bottom};
 
         Drawing.pen().setColor(this.colour);
         Drawing.pen().fillPolygon(xCoords, yCoords, xCoords.length);

@@ -26,19 +26,13 @@ public class Rooster implements LocatedRectangle {
     }
 
     public void draw() {
-        int xOffset = 25;
-        int yOffset = 25;
-
-        position.x += xOffset;
-        position.y += yOffset;
-
         Drawing.pen().setColor(Color.BLACK);
         Drawing.pen().drawString(name, position.x + 150, position.y + 50);
 
-        Drawing.pen().drawRect(position.x - xOffset, position.y - yOffset, WIDTH, HEIGHT);
+        Drawing.pen().drawRect(position.x, position.y, WIDTH, HEIGHT);
 
         head.drawAt(position.x, position.y);
-        body.drawAt(position.x + 50, position.y + 100);
+        body.drawAt(position.x + 75, position.y + 125);
     }
 
     public Point address() {

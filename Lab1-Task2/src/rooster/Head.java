@@ -18,11 +18,14 @@ public class Head {
     }
 
     public void drawAt(int left, int bottom) {
-    	Drawing.pen().setColor(this.colour);
-    	Drawing.pen().fillOval(left, bottom, DIAMETER, DIAMETER);
+        int xOffset = 25;
+        int yOffset = 25;
 
-        beak.drawAt(left + 2, bottom + 35);
-        eye.drawAt(left + 15, bottom + 25);
-        comb.drawAt(left + 50, bottom);
+    	Drawing.pen().setColor(this.colour);
+    	Drawing.pen().fillOval(left + xOffset, bottom + yOffset, DIAMETER, DIAMETER);
+
+        beak.drawAt(left, bottom + yOffset + 50);
+        comb.drawAt(left + xOffset + 75, bottom);
+        eye.drawAt(left + xOffset + 15, bottom + yOffset + 15);
     }
 }
