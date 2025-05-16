@@ -15,11 +15,21 @@ public class Scene {
         Rooster robert = new Rooster(new Point(300, 400), "Robert", Color.YELLOW, Color.ORANGE, Color.YELLOW, Color.decode("#7a5230"), Color.RED);
 
         ricky.draw();
+    	roosters.add(ricky);
 
-        if (!ron.intersects(ricky)) ron.draw();
+        if (!ron.intersects(ricky)) {
+        	ron.draw();
+        	roosters.add(ron);
+        }
 
-        if (!ross.intersects(ricky) && !ross.intersects(ron)) ross.draw();
+        if (!ross.intersects(ricky) && !ross.intersects(ron)) { 
+        	ross.draw();
+        	roosters.add(ross);
+        }
 
-        if (!robert.intersects(ricky) && !robert.intersects(ron) && !robert.intersects(ross)) robert.draw();
+        if (!robert.intersects(ricky) && !robert.intersects(ron) && !robert.intersects(ross)) {
+        	robert.draw();
+        	roosters.add(robert);
+        }
     }
 }
