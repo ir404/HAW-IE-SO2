@@ -6,9 +6,9 @@ import drawingTool.Drawing;
 public class Head {
     private final int DIAMETER = 100;
     private Color colour;
-    private Beak beak;
-    private Eye eye;
-    private Comb comb;
+    private Beak beak;      // composite
+    private Eye eye;        // composite
+    private Comb comb;      // composite
 
     public Head(Color colour) {
         this.colour = colour;

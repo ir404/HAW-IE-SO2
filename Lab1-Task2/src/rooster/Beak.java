@@ -5,7 +5,7 @@ import drawingTool.Drawing;
 
 public class Beak {
     private Color colour;
-    private Hackle hackle;
+    private Hackle hackle;      // composite
 
     public Beak(Color colour) {
         this.colour = colour;

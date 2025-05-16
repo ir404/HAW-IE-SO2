@@ -6,9 +6,10 @@ import drawingTool.Drawing;
 
 public class Body {
     private Color colour;
-    private Wing wing;
-    private Leg leg;
-    private Tail tail;
+    private Wing wing;              // composite
+    private RocketWing rocketWing;
+    private Leg leg;                // composite
+    private Tail tail;              // composite
 
     public Body(Color colour, Color wingColour, Color legColour, Color tailColour) {
         this.colour = colour;
@@ -24,7 +25,7 @@ public class Body {
         Drawing.pen().setColor(this.colour);
         Drawing.pen().fillPolygon(xCoords, yCoords, 7);
 
-        wing.draw(left + 25, bottom);
+        wing.drawAt(left + 25, bottom);
         leg.draw(left + 50, bottom + 150);
         tail.drawAt(left + 200, bottom);
     }
