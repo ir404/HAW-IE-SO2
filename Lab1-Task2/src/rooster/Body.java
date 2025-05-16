@@ -7,21 +7,32 @@ import drawingTool.RandomNumber;
 
 public class Body {
     private Color colour;
-    private Wing wing;              // composite
-    private RocketWing rocketWing;
-    private Leg leg;                // composite
-    private Tail tail;              // composite
+    private Wing wing;                  // composite
+    private Boot boot;                  // composite
+    private Tail tail;                  // composite
 
-    public Body(Color colour, Color wingColour, Color legColour, Color tailColour) {
-        int number = RandomNumber.between(0, 10);
+    public Body(Color colour, Color wingColour, Color bootColour, Color tailColour) {
+        int number = RandomNumber.between(1, 30);
         this.colour = colour;
-        leg = new Leg(legColour);
+        boot = new Boot(bootColour);
         tail = new Tail(tailColour);
 
-        if (number % 2 == 0 || number % 3 == 0)
-            rocketWing = new RocketWing(wingColour, Color.RED);
-        else
+        if (number % 3 == 0 && number % 5 == 0) {
+            wing = new RocketWing(wingColour, Color.RED);
+            boot = new CowboyBoot(bootColour);
+        }
+        else if (number % 3 == 0) {
+            wing = new RocketWing(wingColour, Color.RED);
+            boot = new Boot(bootColour);
+        }
+        else if (number % 5 == 0) {
             wing = new Wing(wingColour);
+            boot = new CowboyBoot(bootColour);
+        }
+        else {
+            wing = new Wing(wingColour);
+            boot = new Boot(bootColour);
+        }
     }
 
     public void drawAt(int left, int bottom) {
@@ -31,12 +42,8 @@ public class Body {
         Drawing.pen().setColor(this.colour);
         Drawing.pen().fillPolygon(xCoords, yCoords, 7);
 
-        if (wing != null)
-            wing.drawAt(left + 25, bottom);
-        else
-            rocketWing.drawAt(left + 25, bottom);
-
-        leg.draw(left + 50, bottom + 150);
+        wing.drawAt(left + 25, bottom);
+        boot.drawAt(left + 50, bottom + 150);
         tail.drawAt(left + 200, bottom);
     }
 }

@@ -4,15 +4,15 @@ import java.awt.*;
 
 import drawingTool.Drawing;
 
-public class Leg {
+public class Boot {
     private Color colour;
 
-    public Leg(Color colour) {
+    public Boot(Color colour) {
         this.colour = colour;
     }
 
-    public void draw(int left, int bottom) {        // 700, 650
-        int[] xCoords = {left, left, left - 50, left + 50, left + 30};
+    public void drawAt(int left, int bottom) {        // 700, 650
+        int[] xCoords = {left, left, left - 50, left + 30, left + 30};
         int[] yCoords = {bottom, bottom + 25, bottom + 50, bottom + 50, bottom};
 
         Drawing.pen().setColor(this.colour);
