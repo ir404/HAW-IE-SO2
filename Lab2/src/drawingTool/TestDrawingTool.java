@@ -23,6 +23,6 @@ public class TestDrawingTool {
     }
 
     public static void main(String[] args) {
-        new TestDrawingTool("Why not roosters??");
+        new TestDrawingTool("R for roosters!!");
     }
 }
