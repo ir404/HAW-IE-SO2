@@ -4,6 +4,7 @@ import java.awt.*;
 import drawingTool.Drawing;
 
 public class Beak {
+    private final int GAP = 2;
     private Color colour;
     private Hackle hackle;      // composite
 
@@ -13,11 +14,9 @@ public class Beak {
     }
 
     public void drawAt(int left, int bottom) {
-        int[] xCoords = {left, left + 25, left + 25, left};
-        int[] yCoords = {bottom, bottom - 15, bottom + 15, bottom};
-
         Drawing.pen().setColor(this.colour);
-        Drawing.pen().fillPolygon(xCoords, yCoords, 4);
+        drawUpper(left, bottom);
+        drawLower(left, bottom);
 
         hackle.drawAt(left + 20, bottom + 15);
     }
@@ -28,15 +27,24 @@ public class Beak {
             return;
         }
 
-        int[] xCoordsUpper = {left, left + 25, left + 25, left};
-        int[] yCoordsUpper = {bottom, bottom - 15, bottom, bottom};
-        int[] xCoordsLower = {left, left + 25, left + 25, left};
-        int[] yCoordLower = {bottom + 2, bottom + 20, bottom + 2, bottom + 2};
-
         Drawing.pen().setColor(this.colour);
-        Drawing.pen().fillPolygon(xCoordsUpper, yCoordsUpper, 4);
-        Drawing.pen().fillPolygon(xCoordsLower, yCoordLower, 4);
+        drawUpper(left, bottom);
+        drawLower(left, bottom + GAP);
 
-        hackle.drawAt(left + 20, bottom + 15);
+        hackle.drawAt(left + 20, bottom + GAP + 15);
+    }
+
+    private void drawUpper(int left, int bottom) {
+        int[] xCoords = {left, left + 25, left + 25, left};
+        int[] yCoords = {bottom, bottom - 15, bottom, bottom};
+
+        Drawing.pen().fillPolygon(xCoords, yCoords, 4);
+    }
+
+    private void drawLower(int left, int bottom) {
+        int[] xCoords = {left, left + 25, left + 25, left};
+        int[] yCoords = {bottom, bottom + 15, bottom, bottom};
+
+        Drawing.pen().fillPolygon(xCoords, yCoords, 4);
     }
 }
