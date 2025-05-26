@@ -18,7 +18,7 @@ public class TestDrawingTool {
         applicationFrame = new JFrame(title);
         Dimension screenSize = applicationFrame.getToolkit().getScreenSize();
         applicationFrame.setBounds(0, 0, screenSize.width, screenSize.height);
-        applicationFrame.add(new DrawingArea());
+        applicationFrame.add(new DrawingArea(screenSize.width, screenSize.height));
         applicationFrame.setVisible(true);
     }
 
