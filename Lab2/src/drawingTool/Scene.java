@@ -13,34 +13,37 @@ public class Scene {
 
         System.out.printf("Width = %d and Height = %d \n\n", width, height);
 
-        for (int i = 0; i < 100; ++i) {
-            int x = RandomNumber.between(10, width - 380);
-            int y = RandomNumber.between(10, height - 350);
-
-            Rooster newRooster = new Rooster(new Point(x, y), "Rooster " + i, Color.YELLOW, Color.ORANGE, Color.YELLOW, Color.decode("#7a5230"), Color.RED);
-
-            System.out.printf("Rooster %d with (%d, %d) \n", i, x, y);
-
-            if (i == 0) {
-                roosters.add(newRooster);
-            }
-            else {
-                boolean intersects = false;
-                int j = 0;
-
-                while (!intersects && j < roosters.size()) {
-                    if (newRooster.intersects(roosters.get(j))) intersects = true;
-                    ++j;
-                }
-
-                if (!intersects) roosters.add(newRooster);
-            }
-        }
+//        for (int i = 0; i < 100; ++i) {
+//            int x = RandomNumber.between(10, width - 380);
+//            int y = RandomNumber.between(10, height - 350);
+//
+//            Rooster newRooster = new Rooster(1, new Point(x, y), "Rooster " + i, Color.YELLOW, Color.ORANGE, Color.YELLOW, Color.decode("#7a5230"), Color.RED);
+//
+//            System.out.printf("Rooster %d with (%d, %d) \n", i, x, y);
+//
+//            if (i == 0) {
+//                roosters.add(newRooster);
+//            }
+//            else {
+//                boolean intersects = false;
+//                int j = 0;
+//
+//                while (!intersects && j < roosters.size()) {
+//                    if (newRooster.intersects(roosters.get(j))) intersects = true;
+//                    ++j;
+//                }
+//
+//                if (!intersects) roosters.add(newRooster);
+//            }
+//        }
     }
 
     public void drawRoosters() {
-        for (Rooster rooster: roosters) {
-            rooster.draw();
-        }
+        Rooster newRooster = new Rooster(2, new Point(10, 10), "Test Rooster ", Color.YELLOW, Color.ORANGE, Color.YELLOW, Color.decode("#7a5230"), Color.RED);
+        newRooster.draw();
+
+//        for (Rooster rooster: roosters) {
+//            rooster.draw();
+//        }
     }
 }

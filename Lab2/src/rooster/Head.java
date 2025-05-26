@@ -5,33 +5,35 @@ import drawingTool.Drawing;
 import drawingTool.RandomNumber;
 
 public class Head {
-    private final int DIAMETER = 100;
-    private Color colour;
-    private Beak beak;      // composite
-    private Eye eye;        // composite
-    private Comb comb;      // composite
+    private final int DIAMETER = 60;
+    private final int X_OFFSET = 20;
+    private final int Y_OFFSET = 20;
+    private final Color COLOUR = Color.YELLOW;
 
-    public Head(Color colour) {
-        this.colour = colour;
-        beak = new Beak(Color.RED);
-        eye = new Eye(Color.GRAY, Color.WHITE);
-        comb = new Comb(Color.red);
+    private int size;
+    private Mouth mouth;      // composite
+    private Comb comb;      // composite
+    private Eye eye;        // composite
+
+    public Head(int size) {
+        this.size = size;
+        mouth = new Mouth(this.size);
+        comb = new Comb(this.size);
+        eye = new Eye(this.size);
     }
 
     public void drawAt(int left, int bottom) {
-        int xOffset = 25;
-        int yOffset = 25;
         int number = RandomNumber.between(1, 2);
 
-    	Drawing.pen().setColor(this.colour);
-    	Drawing.pen().fillOval(left + xOffset, bottom + yOffset, DIAMETER, DIAMETER);
+    	Drawing.pen().setColor(COLOUR);
+    	Drawing.pen().fillOval(left + size * X_OFFSET, bottom + size * Y_OFFSET, size * DIAMETER, size * DIAMETER);
 
         if (number == 1)
-            beak.drawAt(left, bottom + yOffset + 50);
+            mouth.drawAt(left, bottom);
         else
-            beak.drawAt(left, bottom + yOffset + 50, true);
+            mouth.drawAt(left, bottom, true);
 
-        comb.drawAt(left + xOffset + 75, bottom);
-        eye.drawAt(left + xOffset + 15, bottom + yOffset + 15);
+        comb.drawAt(left, bottom);
+        eye.drawAt(left, bottom);
     }
 }
