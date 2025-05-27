@@ -2,7 +2,8 @@
 ### Scaling
 1. Each and every class under the `rooster` package was adjusted so that they can be scaled using the `size` passed to `Rooster` when an object is instantiated
 2. The dimensional properties (width, height, diameter, etc) and offsets in each part class were set relative to the coordinates passed to the `Rooster`. Adjust these properties with care. 
-3. A new property called  `size` was introduced to each class under `rooster` to scale the object. During implementation a size of 1 of a Rooster was set to take up 200 x 200 px.
+3. A new property called  `size` was introduced to each class under `rooster` to scale the object.
+	1. During implementation a size of 1 of a Rooster was set to take up 200 x 200 px.
 
 ### Collision Detection & Drawing Multiple Roosters
 1. The `Rooster` class implements the given interface `LocatedRectangle` and has been updated to include the method signatures.
