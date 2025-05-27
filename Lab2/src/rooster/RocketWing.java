@@ -5,24 +5,28 @@ import drawingTool.Drawing;
 import java.awt.*;
 
 public class RocketWing extends Wing {
-    private Color rocketColour;
+    private final int WIDTH = 60;
+    private final int HEIGHT = 10;
+    private final int X_OFFSET = 70;
+    private final int Y_OFFSET_TOP_ROCKET = 90;
+    private final int Y_OFFSET_BOTTOM_ROCKET = 105;
+    private final Color ROCKET_COLOUR = Color.RED;
 
-    public RocketWing(Color colour, Color rocketColour) {
-        super(colour);
-        this.rocketColour = rocketColour;
+    public RocketWing(int size) {
+        super(size);
     }
 
     @Override
     public void drawAt(int left, int bottom) {
         super.drawAt(left, bottom);
 
-        int[] xCoords1 = {left + 10, left + 15, left + 100, left + 100, left + 15, left + 10};
-        int[] yCoords1 = {bottom + 15, bottom + 10, bottom + 10, bottom + 20, bottom + 20, bottom + 15};
-        int[] xCoords2 = {left + 10, left + 15, left + 75, left + 75, left + 15, left + 10};
-        int[] yCoords2 = {bottom + 30, bottom + 25, bottom + 25, bottom + 35, bottom + 35, bottom + 30};
+        int[] xCoords1 = {left + super.getSize() * X_OFFSET, left + super.getSize() * (X_OFFSET + WIDTH), left + super.getSize() * (X_OFFSET + WIDTH), left + super.getSize() * X_OFFSET, left + super.getSize() * (X_OFFSET - 10)};
+        int[] yCoords1 = {bottom + super.getSize() * Y_OFFSET_TOP_ROCKET, bottom + super.getSize() * Y_OFFSET_TOP_ROCKET, bottom + super.getSize() * (Y_OFFSET_TOP_ROCKET + HEIGHT), bottom + super.getSize() * (Y_OFFSET_TOP_ROCKET + HEIGHT), bottom + super.getSize() * (Y_OFFSET_TOP_ROCKET + (int)(0.5 * HEIGHT))};
+        int[] xCoords2 = {left + super.getSize() * X_OFFSET, left + super.getSize() * (X_OFFSET + (int)(0.75 * WIDTH)), left + super.getSize() * (X_OFFSET + (int)(0.75 * WIDTH)), left + super.getSize() * X_OFFSET, left + super.getSize() * (X_OFFSET - 10)};
+        int[] yCoords2 = {bottom + super.getSize() * Y_OFFSET_BOTTOM_ROCKET, bottom + super.getSize() * Y_OFFSET_BOTTOM_ROCKET, bottom + super.getSize() * (Y_OFFSET_BOTTOM_ROCKET + HEIGHT), bottom + super.getSize() * (Y_OFFSET_BOTTOM_ROCKET + HEIGHT), bottom + super.getSize() * (Y_OFFSET_BOTTOM_ROCKET + (int)(0.5 * HEIGHT))};
 
-        Drawing.pen().setColor(rocketColour);
-        Drawing.pen().fillPolygon(xCoords1, yCoords1, 6);
-        Drawing.pen().fillPolygon(xCoords2, yCoords2, 6);
+        Drawing.pen().setColor(ROCKET_COLOUR);
+        Drawing.pen().fillPolygon(xCoords1, yCoords1, xCoords1.length);
+        Drawing.pen().fillPolygon(xCoords2, yCoords2, xCoords2.length);
     }
 }

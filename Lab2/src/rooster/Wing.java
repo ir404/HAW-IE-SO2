@@ -4,21 +4,27 @@ import java.awt.Color;
 import drawingTool.Drawing;
 
 public class Wing {
-    private Color colour;
+    private final int WIDTH = 60;
+    private final int HEIGHT = 45;
+    private final int X_OFFSET = 60;
+    private final int Y_OFFSET = 80;
+    private final Color COLOUR = Color.YELLOW;
 
-    public Wing(Color colour) {
-        this.colour = colour;
+    private int size;
+
+    public Wing(int size) {
+        this.size = size;
     }
 
     public void drawAt(int left, int bottom) {
-        int[] xCoords = {left, left + 25, left + 50, left + 100};
-        int[] yCoords = {bottom, bottom + 50, bottom + 50, bottom};
+        int[] xCoords = {left + size * X_OFFSET, left + size * (X_OFFSET + WIDTH), left + size * (X_OFFSET + (int)(0.5 * WIDTH))};
+        int[] yCoords = {bottom + size * Y_OFFSET, bottom + size * Y_OFFSET, bottom + size * (Y_OFFSET + HEIGHT)};
 
-        Drawing.pen().setColor(this.colour);
-        Drawing.pen().fillPolygon(xCoords, yCoords, 4);
+        Drawing.pen().setColor(COLOUR);
+        Drawing.pen().fillPolygon(xCoords, yCoords, xCoords.length);
     }
 
-    public Color getColour() {
-        return colour;
+    public int getSize() {
+        return size;
     }
 }

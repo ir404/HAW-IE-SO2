@@ -15,7 +15,7 @@ public class Rooster implements LocatedRectangle {
     private Head head;      // composite
     private Body body;      // composite
 
-    public Rooster(int size, Point placeAt, String roosterName, Color headColour, Color bodyColour, Color wingColour, Color legColour, Color tailColour) {
+    public Rooster(int size, Point placeAt, String roosterName, Color tailColour) {
         if (size < 1)
             this.size = 1;
         else
@@ -23,28 +23,26 @@ public class Rooster implements LocatedRectangle {
 
         position = placeAt;
         name = roosterName;
-        head = new Head(size);
-        body = new Body(bodyColour, wingColour, legColour, tailColour);
+        head = new Head(this.size);
+        body = new Body(this.size, tailColour);
     }
 
     public void draw() {
-        Drawing.pen().setColor(Color.BLACK);
-        Drawing.pen().drawRect(position.x, position.y, WIDTH * size, HEIGHT * size);
-        drawGrid();
-        Drawing.pen().drawString(name, position.x + 150, position.y + 50);
-
         head.drawAt(position.x, position.y);
-//        body.drawAt(position.x + 75, position.y + 125);
+        body.drawAt(position.x, position.y);
+
+        Drawing.pen().setColor(Color.BLACK);
+        Drawing.pen().drawString(name, position.x + size * (int)(0.5 * WIDTH), position.y + (int)(0.25 * HEIGHT));
     }
 
     private void drawGrid() {
         Drawing.pen().setColor(Color.BLACK);
-
-        for (int i = position.x; i < position.x + (size * WIDTH); i+=10) {
-            for (int j = position.y; j < size * position.y + (size * HEIGHT); j += 10) {
+        for (int i = position.x; i < position.x + (size * WIDTH); i += 10) {
+            for (int j = position.y; j < position.y + (size * HEIGHT); j += 10) {
                 Drawing.pen().drawRect(i, j, 10, 10);
             }
         }
+        Drawing.pen().drawRect(position.x, position.y, WIDTH * size, HEIGHT * size);
     }
 
     public Point address() {
@@ -52,10 +50,10 @@ public class Rooster implements LocatedRectangle {
     }
 
     public int width() {
-        return WIDTH;
+        return size * WIDTH;
     }
 
     public int height() {
-        return HEIGHT;
+        return size * HEIGHT;
     }
 }
