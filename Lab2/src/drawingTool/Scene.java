@@ -16,10 +16,11 @@ public class Scene {
         for (int i = 0; i < 1000; ++i) {
             int x = RandomNumber.between(10, width - 380);
             int y = RandomNumber.between(10, height - 350);
+            int size = RandomNumber.between(1, 2);
 
-            Rooster newRooster = new Rooster(RandomNumber.between(1, 2), new Point(x, y), "R_" + i,  Color.RED);
+            Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
 
-            // System.out.printf("Rooster %d with (%d, %d) \n", i, x, y);
+            // System.out.printf("Rooster %d with (%d, %d) and size %d \n", i, x, y, size);
 
             if (i == 0) {
                 roosters.add(newRooster);

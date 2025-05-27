@@ -17,7 +17,7 @@ public class Body {
     private Boot boot;                  // composite
     private Tail tail;                  // composite
 
-    public Body(int size, Color tailColour) {
+    public Body(int size) {
         this.size = size;
         boot = new Boot(this.size);
         tail = new Tail(this.size);

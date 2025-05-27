@@ -15,7 +15,7 @@ public class Rooster implements LocatedRectangle {
     private Head head;      // composite
     private Body body;      // composite
 
-    public Rooster(int size, Point placeAt, String roosterName, Color tailColour) {
+    public Rooster(int size, Point placeAt, String roosterName) {
         if (size < 1)
             this.size = 1;
         else
@@ -24,7 +24,7 @@ public class Rooster implements LocatedRectangle {
         position = placeAt;
         name = roosterName;
         head = new Head(this.size);
-        body = new Body(this.size, tailColour);
+        body = new Body(this.size);
     }
 
     public void draw() {
