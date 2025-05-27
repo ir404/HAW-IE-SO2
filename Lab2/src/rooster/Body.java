@@ -6,44 +6,50 @@ import drawingTool.Drawing;
 import drawingTool.RandomNumber;
 
 public class Body {
-    private Color colour;
+    private final int WIDTH = 100;
+    private final int HEIGHT = 80;
+    private final int X_OFFSET = 50;
+    private final int Y_OFFSET = 80;
+    private final Color COLOUR = Color.ORANGE;
+
+    private int size;
     private Wing wing;                  // composite
     private Boot boot;                  // composite
     private Tail tail;                  // composite
 
-    public Body(Color colour, Color wingColour, Color bootColour, Color tailColour) {
-        int number = RandomNumber.between(1, 50);
-        this.colour = colour;
-        boot = new Boot(bootColour);
-        tail = new Tail(tailColour);
+    public Body(int size) {
+        this.size = size;
+        boot = new Boot(this.size);
+        tail = new Tail(this.size);
 
+        int number = RandomNumber.between(1, 50);
         if (number % 3 == 0 && number % 5 == 0) {
-            wing = new RocketWing(wingColour, Color.RED);
-            boot = new CowboyBoot(bootColour);
+            wing = new RocketWing(this.size);
+            boot = new CowboyBoot(this.size);
         }
         else if (number % 3 == 0) {
-            wing = new RocketWing(wingColour, Color.RED);
-            boot = new Boot(bootColour);
+            wing = new RocketWing(this.size);
+            boot = new Boot(this.size);
         }
         else if (number % 5 == 0) {
-            wing = new Wing(wingColour);
-            boot = new CowboyBoot(bootColour);
+            wing = new Wing(this.size);
+            boot = new CowboyBoot(this.size);
         }
         else {
-            wing = new Wing(wingColour);
-            boot = new Boot(bootColour);
+            wing = new Wing(this.size);
+            boot = new Boot(this.size);
         }
     }
 
     public void drawAt(int left, int bottom) {
-        int[] xCoords = {left, left - 25, left - 25, left + 50, left + 80, left + 200, left};
-        int[] yCoords = {bottom, bottom + 25, bottom + 50, bottom + 150, bottom + 150, bottom, bottom};
+        int[] xCoords = {left + size * X_OFFSET, left + size * (X_OFFSET + WIDTH), left + size * (X_OFFSET + (int)(0.5 * WIDTH)), left + size * (X_OFFSET + (int)(0.3 * WIDTH)), left + size * (X_OFFSET - (int)(0.2 * X_OFFSET)), left + size * (X_OFFSET - (int)(0.2 * X_OFFSET)), left + size * X_OFFSET};
+        int[] yCoords = {bottom + size * Y_OFFSET, bottom + size * Y_OFFSET, bottom + size * (Y_OFFSET + HEIGHT), bottom + size * (Y_OFFSET + HEIGHT), bottom + size * (Y_OFFSET + (int)(0.5 * HEIGHT)), bottom + size * (Y_OFFSET + (int)(0.2 * HEIGHT)), bottom + size * Y_OFFSET};
 
-        Drawing.pen().setColor(this.colour);
-        Drawing.pen().fillPolygon(xCoords, yCoords, 7);
+        Drawing.pen().setColor(COLOUR);
+        Drawing.pen().fillPolygon(xCoords, yCoords, xCoords.length);
 
-        wing.drawAt(left + 25, bottom);
-        boot.drawAt(left + 50, bottom + 150);
-        tail.drawAt(left + 200, bottom);
+        wing.drawAt(left, bottom);
+        boot.drawAt(left, bottom);
+        tail.drawAt(left, bottom);
     }
 }

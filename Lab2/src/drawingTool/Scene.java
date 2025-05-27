@@ -11,15 +11,16 @@ public class Scene {
     public Scene(int width, int height) {
         roosters = new ArrayList<>();
 
-        System.out.printf("Width = %d and Height = %d \n\n", width, height);
+        // System.out.printf("Width = %d and Height = %d \n\n", width, height);
 
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 1000; ++i) {
             int x = RandomNumber.between(10, width - 380);
             int y = RandomNumber.between(10, height - 350);
+            int size = RandomNumber.between(1, 2);
 
-            Rooster newRooster = new Rooster(new Point(x, y), "Rooster " + i, Color.YELLOW, Color.ORANGE, Color.YELLOW, Color.decode("#7a5230"), Color.RED);
+            Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
 
-            System.out.printf("Rooster %d with (%d, %d) \n", i, x, y);
+            // System.out.printf("Rooster %d with (%d, %d) and size %d \n", i, x, y, size);
 
             if (i == 0) {
                 roosters.add(newRooster);
@@ -39,7 +40,7 @@ public class Scene {
     }
 
     public void drawRoosters() {
-        for (Rooster rooster: roosters) {
+        for (Rooster rooster : roosters) {
             rooster.draw();
         }
     }

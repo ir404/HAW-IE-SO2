@@ -4,17 +4,24 @@ import drawingTool.Drawing;
 
 import java.awt.*;
 
-public class CowboyBoot extends Boot{
-    public CowboyBoot(Color colour) {
-        super(colour);
+public class CowboyBoot extends Boot {
+    private final int ARM_WIDTH = 10;
+    private final int ARM_HEIGHT = 10;
+    private final int ROWEL_DIAMETER = 22;
+    private final int X_OFFSET = 100;
+    private final int Y_OFFSET = 180;
+    private final Color COLOUR = Color.ORANGE;
+
+    public CowboyBoot(int size) {
+        super(size);
     }
 
     @Override
     public void drawAt(int left, int bottom) {
         super.drawAt(left, bottom);
 
-        Drawing.pen().setColor(Color.ORANGE);
-        Drawing.pen().fillRect(left + 30, bottom + 25, 15, 10);
-        Drawing.pen().fillOval(left + 40, bottom + 15, 25, 25);
+        Drawing.pen().setColor(COLOUR);
+        Drawing.pen().fillRect(left + super.getSize() * X_OFFSET, bottom + super.getSize() * Y_OFFSET, super.getSize() * ARM_WIDTH, super.getSize() * ARM_HEIGHT);
+        Drawing.pen().fillOval(left + super.getSize() * (X_OFFSET + ARM_WIDTH), bottom + super.getSize() * (Y_OFFSET - (int)(0.5 * ARM_HEIGHT)), super.getSize() * ROWEL_DIAMETER, super.getSize() * ROWEL_DIAMETER);
     }
 }
