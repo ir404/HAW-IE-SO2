@@ -35,6 +35,7 @@ public class Rooster implements LocatedRectangle {
         Drawing.pen().drawString(name, position.x + size * (int)(0.5 * WIDTH), position.y + (int)(0.25 * HEIGHT));
     }
 
+    // call this method at the beginning of draw() to see a grid behing the rooster drawing
     private void drawGrid() {
         Drawing.pen().setColor(Color.BLACK);
         for (int i = position.x; i < position.x + (size * WIDTH); i += 10) {
