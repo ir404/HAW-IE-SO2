@@ -1,4 +1,4 @@
-## Summary of the Key Things
+## Summary of the Key Things (Last updated May 28, 2025)
 ### Scaling
 1. Each and every class under the `rooster` package was adjusted so that they can be scaled using the `size` passed to `Rooster` when an object is instantiated
 2. The dimensional properties (width, height, diameter, etc) and offsets in each part class were set relative to the coordinates passed to the `Rooster`. Adjust these properties with care.
@@ -17,3 +17,8 @@
         1. Only if `newRooster` had not intersected with any is it then added to the `roosters` ArrayList.
     5. The `for` loop runs 1000 times in order to generate (hopefully) enough roosters to fill the app's space.
 4. To draw the roosters stored in ArrayList `roosters` the `drawRoosters()` method is called which simply loops through every object in `roosters` and calls its `draw()` method.
+
+### UML Class Diagram
+Half-baked but it contains the main stuff - class relationships, overloaded methods. You get the idea
+
+![image](https://github.com/user-attachments/assets/06afabba-ba1c-4f29-9b46-6f3eca8550d8)
