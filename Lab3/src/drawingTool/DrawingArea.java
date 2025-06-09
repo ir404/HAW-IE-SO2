@@ -8,6 +8,7 @@ public class DrawingArea extends JPanel {
     private Scene scene;
 
     public DrawingArea(int width, int height) {
+        super.setPreferredSize(new Dimension(width, height));
         scene = new Scene(width, height);
     }
 
