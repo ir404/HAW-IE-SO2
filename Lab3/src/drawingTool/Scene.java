@@ -13,7 +13,6 @@ public class Scene {
         this.width = width;
         this.height = height;
         roosters = new ArrayList<>();
-
         generateRoosters(attempts);
     }
 
@@ -23,26 +22,23 @@ public class Scene {
 
     private void generateRoosters(int attempts) {
         for (int i = 0; i < attempts; ++i) {
-            int x = RandomNumber.between(10, width - 380);
-            int y = RandomNumber.between(10, height - 350);
+            int x = RandomNumber.between(10, width);
+            int y = RandomNumber.between(10, height);
             int size = RandomNumber.between(1, 2);
 
             Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
+            Rooster  tempRoosterAtBottom = new Rooster(size, new Point(x, height), "Temp Rooster at Bottom");
+            Rooster tempRoosterAtRight = new Rooster(size, new Point(width, y), "Temp Rooster at Right");
 
-            if (i == 0) {
-                roosters.add(newRooster);
+            boolean intersects = newRooster.intersects(tempRoosterAtBottom) || newRooster.intersects(tempRoosterAtRight);
+            int j = 0;
+            while (!intersects && j < roosters.size()) {
+                if (newRooster.intersects(roosters.get(j)))
+                    intersects = true;
+                ++j;
             }
-            else {
-                boolean intersects = false;
-                int j = 0;
 
-                while (!intersects && j < roosters.size()) {
-                    if (newRooster.intersects(roosters.get(j))) intersects = true;
-                    ++j;
-                }
-
-                if (!intersects) roosters.add(newRooster);
-            }
+            if (!intersects) roosters.add(newRooster);
         }
     }
 
