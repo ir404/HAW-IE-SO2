@@ -27,6 +27,18 @@ public class Rooster implements LocatedRectangle {
         body = new Body(this.size);
     }
 
+    public Rooster(int size, Point placeAt, String roosterName, boolean openMouth, boolean rockets, boolean cowboyBoot) {
+        if (size < 1)
+            this.size = 1;
+        else
+            this.size = Math.min(size, 3);
+
+        position = placeAt;
+        name = roosterName;
+        head = new Head(this.size, openMouth);
+        body = new Body(this.size, rockets, cowboyBoot);
+    }
+
     public void draw() {
         head.drawAt(position.x, position.y);
         body.drawAt(position.x, position.y);
@@ -43,6 +55,14 @@ public class Rooster implements LocatedRectangle {
             }
         }
         Drawing.pen().drawRect(position.x, position.y, WIDTH * size, HEIGHT * size);
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public Point address() {

@@ -10,7 +10,7 @@ public class Head {
     private final int Y_OFFSET = 20;
     private final Color COLOUR = Color.YELLOW;
 
-    private int size;
+    private int size, number;
     private Mouth mouth;      // composite
     private Comb comb;      // composite
     private Eye eye;        // composite
@@ -20,11 +20,18 @@ public class Head {
         mouth = new Mouth(this.size);
         comb = new Comb(this.size);
         eye = new Eye(this.size);
+        number = RandomNumber.between(1, 2);
+    }
+
+    public Head(int size, boolean openMouth) {
+        this.size = size;
+        mouth = new Mouth(this.size);
+        comb = new Comb(this.size);
+        eye = new Eye(this.size);
+        number = openMouth ? 2 : 1;
     }
 
     public void drawAt(int left, int bottom) {
-        int number = RandomNumber.between(1, 2);
-
     	Drawing.pen().setColor(COLOUR);
     	Drawing.pen().fillOval(left + size * X_OFFSET, bottom + size * Y_OFFSET, size * DIAMETER, size * DIAMETER);
 

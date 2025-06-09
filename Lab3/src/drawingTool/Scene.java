@@ -44,4 +44,21 @@ public class Scene {
             rooster.draw();
         }
     }
+
+    public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot) {
+        ArrayList<Rooster> tempRoosters = new ArrayList<>();
+
+        System.out.println("Updating  roosters");
+
+        for (Rooster rooster : roosters) {
+            Point coordinate = rooster.address();
+            int size = rooster.getSize();
+            String name = rooster.getName();
+
+            rooster = new Rooster(size, coordinate, name, openMouth, rockets, cowboyBoot);
+            tempRoosters.add(rooster);
+        }
+
+        roosters = tempRoosters;
+    }
 }

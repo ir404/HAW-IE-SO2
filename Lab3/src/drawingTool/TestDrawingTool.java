@@ -22,6 +22,7 @@ public class TestDrawingTool extends JFrame implements ChangeListener, ActionLis
     private final int UI_GROUP_H_GAP = 100;
     private final int UI_GROUP_V_GAP = 50;
 
+    private DrawingArea drawingArea;
     private JPanel controlPanel;
     private JLabel attemptsLabel, sizeLabel, rocketsLabel, openMouthLabel, bootLabel;
     private JSlider attemptsSlider;
@@ -37,7 +38,7 @@ public class TestDrawingTool extends JFrame implements ChangeListener, ActionLis
         setTitle(title);
         setLayout(new BorderLayout());
 
-        DrawingArea drawingArea = new DrawingArea(screenSize.width, (int) (screenSize.height * 0.80));
+        drawingArea = new DrawingArea(screenSize.width, (int) (screenSize.height * 0.80));
 
         controlPanel = new JPanel();
         controlPanel.setBackground(Color.CYAN);
@@ -132,6 +133,10 @@ public class TestDrawingTool extends JFrame implements ChangeListener, ActionLis
             showRockets = rocketsCheckBox.isSelected();
             showOpenMouth = openMouthCheckBox.isSelected();
             showCowboyBoot = bootComboBox.getSelectedIndex() == 1;
+
+            drawingArea.getScene().updateRoosters(showOpenMouth, showRockets, showCowboyBoot);
+            drawingArea.removeAll();
+            drawingArea.repaint();
         }
     }
 
