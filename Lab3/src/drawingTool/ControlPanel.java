@@ -8,7 +8,7 @@ import java.awt.*;
 public class ControlPanel extends JPanel implements ChangeListener {
     private final Color CONTROL_PANEL_COLOUR = Color.CYAN;
     private final int UI_GROUP_H_GAP = 5;
-    private final int UI_GROUP_V_GAP = 20;
+    private final int UI_GROUP_V_GAP = 15;
 
     private JLabel rocketsLabel, openMouthLabel, bootLabel, attemptsLabel;
     private JCheckBox rocketsCheckBox, openMouthCheckBox;

@@ -12,17 +12,17 @@ public class TestDrawingTool extends JFrame implements ActionListener {
     public TestDrawingTool(String title) {
         // Screen size automatically calculated
         Dimension screenSize = getToolkit().getScreenSize();
-        int frameWidth = (int) (screenSize.width * 0.90);
-        int frameHeight = (int) (screenSize.height * 0.90);
+        int frameWidth = (int) (screenSize.width * 0.95);
+        int frameHeight = (int) (screenSize.height * 0.95);
 
         setTitle(title);
         setLayout(new BorderLayout());
 
-        drawingArea = new DrawingArea(frameWidth, (int) (frameHeight * 0.80));
+        drawingArea = new DrawingArea(frameWidth, (int) (frameHeight * 0.75));
 
         controlPanel = new ControlPanel();
         controlPanel.setBackground(Color.CYAN);
-        controlPanel.setPreferredSize(new Dimension(frameWidth, (int) (frameHeight * 0.20)));
+        controlPanel.setPreferredSize(new Dimension(frameWidth, (int) (frameHeight * 0.25)));
         controlPanel.initialise();
         controlPanel.getUpdateBtn().addActionListener(this);
         controlPanel.getRegenerateBtn().addActionListener(this);
@@ -32,7 +32,7 @@ public class TestDrawingTool extends JFrame implements ActionListener {
         add(controlPanel, BorderLayout.CENTER);
 
         // adjust the frame and display it
-        setBounds(0, 0, screenSize.width, screenSize.height);
+        setBounds(0, 0, frameWidth, frameHeight);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
