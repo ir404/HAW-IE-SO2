@@ -1,11 +1,3 @@
-/**
- * Provides a test application window with a panel.
- *
- * @author Björn Gottfried
- *
- * @version 1.0
- */
-
 package drawingTool;
 
 import javax.swing.*;

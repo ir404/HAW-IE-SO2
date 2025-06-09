@@ -29,8 +29,6 @@ public class Scene {
 
             Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
 
-            // System.out.printf("Rooster %d with (%d, %d) and size %d \n", i, x, y, size);
-
             if (i == 0) {
                 roosters.add(newRooster);
             }
