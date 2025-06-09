@@ -7,13 +7,22 @@ import java.util.ArrayList;
 
 public class Scene {
     private ArrayList<Rooster> roosters;        // aggregate(s)
+    private int width, height;
 
-    public Scene(int width, int height) {
+    public Scene(int width, int height, int attempts) {
+        this.width = width;
+        this.height = height;
         roosters = new ArrayList<>();
 
-        // System.out.printf("Width = %d and Height = %d \n\n", width, height);
+        generateRoosters(attempts);
+    }
 
-        for (int i = 0; i < 1000; ++i) {
+    public Scene(int width, int height) {
+        this(width, height, 1000);
+    }
+
+    private void generateRoosters(int attempts) {
+        for (int i = 0; i < attempts; ++i) {
             int x = RandomNumber.between(10, width - 380);
             int y = RandomNumber.between(10, height - 350);
             int size = RandomNumber.between(1, 2);
@@ -47,8 +56,6 @@ public class Scene {
 
     public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot) {
         ArrayList<Rooster> tempRoosters = new ArrayList<>();
-
-        System.out.println("Updating  roosters");
 
         for (Rooster rooster : roosters) {
             Point coordinate = rooster.address();

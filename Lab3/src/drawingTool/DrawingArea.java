@@ -24,4 +24,8 @@ public class DrawingArea extends JPanel {
     public Scene getScene() {
         return scene;
     }
+
+    public void regenerateScene(int attempts) {
+        scene = new Scene(width, height, attempts);
+    }
 }

@@ -9,27 +9,13 @@
 package drawingTool;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-public class TestDrawingTool extends JFrame implements ChangeListener, ActionListener {
-    private final Color CONTROL_PANEL_COLOUR = Color.CYAN;
-    private final int UI_GROUP_H_GAP = 100;
-    private final int UI_GROUP_V_GAP = 50;
-
+public class TestDrawingTool extends JFrame implements ActionListener {
     private DrawingArea drawingArea;
-    private JPanel controlPanel;
-    private JLabel attemptsLabel, sizeLabel, rocketsLabel, openMouthLabel, bootLabel;
-    private JSlider attemptsSlider;
-    private TextField sizeField;
-    private JCheckBox rocketsCheckBox, openMouthCheckBox;
-    private JComboBox bootComboBox;
-    private JButton updateBtn;
+    private ControlPanel controlPanel;
 
     public TestDrawingTool(String title) {
         // Screen size automatically calculated
@@ -40,110 +26,44 @@ public class TestDrawingTool extends JFrame implements ChangeListener, ActionLis
 
         drawingArea = new DrawingArea(screenSize.width, (int) (screenSize.height * 0.80));
 
-        controlPanel = new JPanel();
+        controlPanel = new ControlPanel();
         controlPanel.setBackground(Color.CYAN);
         controlPanel.setPreferredSize(new Dimension(screenSize.width, (int) (screenSize.height * 0.20)));
-
-        initialiseControlPanel();
+        controlPanel.initialise();
+        controlPanel.getUpdateBtn().addActionListener(this);
+        controlPanel.getRegenerateBtn().addActionListener(this);
 
         // add panels to frame borderLayout
         add(drawingArea, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.CENTER);
 
+        // adjust the frame and display
         setBounds(0, 0, screenSize.width, screenSize.height);
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    private void initialiseControlPanel() {
-        Panel attemptsGroup, sizeGroup, rocketGroup, openMouthGroup, bootGroup, buttonGroup;
-
-//        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
-        controlPanel.setLayout(new GridLayout(2, 3, 50, 0));
-
-        attemptsSlider = new JSlider(0, 1000, 100);
-        attemptsSlider.setBackground(CONTROL_PANEL_COLOUR);
-        attemptsSlider.setPaintTrack(true);
-        attemptsSlider.setPaintTicks(true);
-        attemptsSlider.setPaintLabels(true);
-        attemptsSlider.setMajorTickSpacing(200);
-        attemptsSlider.addChangeListener(this);
-
-        attemptsLabel = new JLabel();
-        attemptsLabel.setText("No. of attempts (" + attemptsSlider.getValue() + ")");
-
-        attemptsGroup = new Panel(new FlowLayout(FlowLayout.CENTER, 5, 20));
-        attemptsGroup.add(attemptsLabel);
-        attemptsGroup.add(attemptsSlider);
-
-        sizeLabel = new JLabel("Size:");
-        sizeField = new TextField();
-        sizeField.setPreferredSize(new Dimension(100, 20));
-
-        sizeGroup = new Panel(new FlowLayout(FlowLayout.CENTER, 5, 20));
-        sizeGroup.add(sizeLabel);
-        sizeGroup.add(sizeField);
-
-        rocketsLabel = new JLabel("Display rockets:");
-        rocketsCheckBox = new JCheckBox();
-        rocketsCheckBox.setBackground(CONTROL_PANEL_COLOUR);
-        rocketGroup = new Panel(new FlowLayout(FlowLayout.CENTER, 5, 20));
-        rocketGroup.add(rocketsLabel);
-        rocketGroup.add(rocketsCheckBox);
-
-        openMouthLabel = new JLabel("Open mouth:");
-        openMouthCheckBox = new JCheckBox();
-        openMouthCheckBox.setBackground(CONTROL_PANEL_COLOUR);
-        openMouthGroup = new Panel(new FlowLayout(FlowLayout.CENTER, 5, 20));
-        openMouthGroup.add(openMouthLabel);
-        openMouthGroup.add(openMouthCheckBox);
-
-        String[] options = {"Default boot", "Cowboy boot"};
-        bootLabel = new JLabel("Type of boot:");
-        bootComboBox = new JComboBox(options);
-        bootGroup = new Panel(new FlowLayout(FlowLayout.CENTER, 5, 20));
-        bootGroup.add(bootLabel);
-        bootGroup.add(bootComboBox);
-
-
-        updateBtn = new JButton("Update Roosters");
-        updateBtn.addActionListener(this);
-        updateBtn.setPreferredSize(new Dimension(150, 25));
-        buttonGroup = new Panel(new FlowLayout(FlowLayout.CENTER, 5, 20));
-        buttonGroup.add(updateBtn);
-
-        // add groups to control panel
-        controlPanel.add(attemptsGroup);
-        controlPanel.add(sizeGroup);
-        controlPanel.add(rocketGroup);
-        controlPanel.add(openMouthGroup);
-        controlPanel.add(bootGroup);
-        controlPanel.add(buttonGroup);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
-        new TestDrawingTool("R for roosters!!");
+        new TestDrawingTool("R for roosters and C for control ;)");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == updateBtn) {
+        if (e.getSource() == controlPanel.getUpdateBtn()) {
             boolean showRockets, showCowboyBoot, showOpenMouth;
 
-            showRockets = rocketsCheckBox.isSelected();
-            showOpenMouth = openMouthCheckBox.isSelected();
-            showCowboyBoot = bootComboBox.getSelectedIndex() == 1;
+            showRockets = controlPanel.getRocketsState();
+            showOpenMouth = controlPanel.getOpenMouthState();
+            showCowboyBoot = controlPanel.getCowboyBootState();
 
             drawingArea.getScene().updateRoosters(showOpenMouth, showRockets, showCowboyBoot);
             drawingArea.removeAll();
             drawingArea.repaint();
         }
-    }
-
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        if (e.getSource() == attemptsSlider) {
-            attemptsLabel.setText("No. of attempts (" + attemptsSlider.getValue() + ")");
+        else if (e.getSource() == controlPanel.getRegenerateBtn()) {
+            drawingArea.regenerateScene(controlPanel.getAttempts());
+            drawingArea.removeAll();
+            drawingArea.repaint();
         }
     }
 }
