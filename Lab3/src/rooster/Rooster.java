@@ -16,18 +16,18 @@ public class Rooster implements LocatedRectangle {
     private Body body;      // composite
 
     public Rooster(int size, Point placeAt, String roosterName) {
-        if (size < 1)
-            this.size = 1;
-        else
-            this.size = Math.min(size, 3);
-
-        position = placeAt;
-        name = roosterName;
+        initialise(size, placeAt, roosterName);
         head = new Head(this.size);
         body = new Body(this.size);
     }
 
     public Rooster(int size, Point placeAt, String roosterName, boolean openMouth, boolean rockets, boolean cowboyBoot) {
+        initialise(size, placeAt, roosterName);
+        head = new Head(this.size, openMouth);
+        body = new Body(this.size, rockets, cowboyBoot);
+    }
+
+    private void initialise(int size, Point placeAt, String roosterName) {
         if (size < 1)
             this.size = 1;
         else
@@ -35,8 +35,6 @@ public class Rooster implements LocatedRectangle {
 
         position = placeAt;
         name = roosterName;
-        head = new Head(this.size, openMouth);
-        body = new Body(this.size, rockets, cowboyBoot);
     }
 
     public void draw() {

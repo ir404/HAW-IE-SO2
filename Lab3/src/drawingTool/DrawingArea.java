@@ -12,7 +12,7 @@ public class DrawingArea extends JPanel {
         this.width = width;
         this.height = height;
         super.setPreferredSize(new Dimension(this.width, this.height));
-        scene = new Scene(width, height);
+        scene = new Scene(this.width, this.height);
     }
 
     protected void paintComponent(Graphics pen) {

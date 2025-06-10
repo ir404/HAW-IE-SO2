@@ -11,9 +11,12 @@ public class TestDrawingTool extends JFrame implements ActionListener {
 
     public TestDrawingTool(String title) {
         // Screen size automatically calculated
-        Dimension screenSize = getToolkit().getScreenSize();
-        int frameWidth = (int) (screenSize.width * 0.95);
-        int frameHeight = (int) (screenSize.height * 0.95);
+        int screenWidth = getToolkit().getScreenSize().width;
+        int screenHeight = getToolkit().getScreenSize().height;
+        int frameWidth = (int) (screenWidth * 0.95);
+        int frameHeight = (int) (screenHeight * 0.95);
+        int framePlacementX = (int) (screenWidth * 0.5 - frameWidth * 0.5);
+        int framePlacementY = (int) (screenHeight * 0.5 - frameHeight * 0.5);
 
         setTitle(title);
         setLayout(new BorderLayout());
@@ -32,7 +35,7 @@ public class TestDrawingTool extends JFrame implements ActionListener {
         add(controlPanel, BorderLayout.CENTER);
 
         // adjust the frame and display it
-        setBounds(0, 0, frameWidth, frameHeight);
+        setBounds(framePlacementX, framePlacementY, frameWidth, frameHeight);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -53,8 +56,7 @@ public class TestDrawingTool extends JFrame implements ActionListener {
             drawingArea.getScene().updateRoosters(showOpenMouth, showRockets, showCowboyBoot);
             drawingArea.removeAll();
             drawingArea.repaint();
-        }
-        else if (e.getSource() == controlPanel.getRegenerateBtn()) {
+        } else if (e.getSource() == controlPanel.getRegenerateBtn()) {
             drawingArea.regenerateScene(controlPanel.getAttempts());
             drawingArea.removeAll();
             drawingArea.repaint();

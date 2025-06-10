@@ -12,7 +12,7 @@ public class ControlPanel extends JPanel implements ChangeListener {
 
     private JLabel rocketsLabel, openMouthLabel, bootLabel, attemptsLabel;
     private JCheckBox rocketsCheckBox, openMouthCheckBox;
-    private JComboBox bootComboBox;
+    private JComboBox<String> bootComboBox;
     private JButton updateBtn, regenerateBtn;
     private JSlider attemptsSlider;
 
@@ -21,7 +21,7 @@ public class ControlPanel extends JPanel implements ChangeListener {
 
         setLayout(new GridLayout(2, 4, 20, 0));
 
-        rocketsLabel = new JLabel("Display rockets:");
+        rocketsLabel = new JLabel("Rockets:");
         rocketsCheckBox = new JCheckBox();
         rocketsCheckBox.setBackground(CONTROL_PANEL_COLOUR);
         rocketGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
@@ -35,15 +35,15 @@ public class ControlPanel extends JPanel implements ChangeListener {
         openMouthGroup.add(openMouthLabel);
         openMouthGroup.add(openMouthCheckBox);
 
-        String[] options = {"Default boot", "Cowboy boot"};
-        bootLabel = new JLabel("Type of boot:");
-        bootComboBox = new JComboBox(options);
+        String[] options = {"Default", "Cowboy boot"};
+        bootLabel = new JLabel("Boot type:");
+        bootComboBox = new JComboBox<>(options);
         bootGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
         bootGroup.add(bootLabel);
         bootGroup.add(bootComboBox);
 
         updateBtn = new JButton("Update Roosters");
-        updateBtn.setPreferredSize(new Dimension(150, 25));
+        updateBtn.setPreferredSize(new Dimension(175, 30));
         updateBtnGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
 
         attemptsSlider = new JSlider(0, 1000, 100);
@@ -60,8 +60,8 @@ public class ControlPanel extends JPanel implements ChangeListener {
         attemptsGroup.add(attemptsSlider);
         updateBtnGroup.add(updateBtn);
 
-        regenerateBtn = new JButton("Randomly regnerate");
-        regenerateBtn.setPreferredSize(new Dimension(150, 25));
+        regenerateBtn = new JButton("Randomly regenerate");
+        regenerateBtn.setPreferredSize(new Dimension(175, 30));
         regenerateBtnGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
         regenerateBtnGroup.add(regenerateBtn);
 

@@ -22,8 +22,8 @@ public class Scene {
 
     private void generateRoosters(int attempts) {
         for (int i = 0; i < attempts; ++i) {
-            int x = RandomNumber.between(10, width);
-            int y = RandomNumber.between(10, height);
+            int x = RandomNumber.between(0, width);
+            int y = RandomNumber.between(0, height);
             int size = RandomNumber.between(1, 2);
 
             Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
@@ -33,8 +33,7 @@ public class Scene {
             boolean intersects = newRooster.intersects(tempRoosterAtBottom) || newRooster.intersects(tempRoosterAtRight);
             int j = 0;
             while (!intersects && j < roosters.size()) {
-                if (newRooster.intersects(roosters.get(j)))
-                    intersects = true;
+                if (newRooster.intersects(roosters.get(j))) intersects = true;
                 ++j;
             }
 
@@ -52,8 +51,8 @@ public class Scene {
         ArrayList<Rooster> tempRoosters = new ArrayList<>();
 
         for (Rooster rooster : roosters) {
-            Point coordinate = rooster.address();
             int size = rooster.getSize();
+            Point coordinate = rooster.address();
             String name = rooster.getName();
 
             rooster = new Rooster(size, coordinate, name, openMouth, rockets, cowboyBoot);
