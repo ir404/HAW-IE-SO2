@@ -15,17 +15,17 @@ public class DrawingArea extends JPanel {
         scene = new Scene(this.width, this.height);
     }
 
-    protected void paintComponent(Graphics pen) {
-        super.paintComponent(pen);
-        Drawing.set(pen);
-        scene.drawRoosters();
-    }
-
     public Scene getScene() {
         return scene;
     }
 
     public void regenerateScene(int attempts) {
         scene = new Scene(width, height, attempts);
+    }
+
+    protected void paintComponent(Graphics pen) {
+        super.paintComponent(pen);
+        Drawing.set(pen);
+        scene.drawRoosters();
     }
 }

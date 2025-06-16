@@ -16,19 +16,20 @@ public class Head {
     private Eye eye;        // composite
 
     public Head(int size) {
-        this.size = size;
-        mouth = new Mouth(this.size);
-        comb = new Comb(this.size);
-        eye = new Eye(this.size);
+        initialise(size);
         number = RandomNumber.between(1, 2);
     }
 
     public Head(int size, boolean openMouth) {
+        initialise(size);
+        number = openMouth ? 2 : 1;
+    }
+
+    private void initialise(int size) {
         this.size = size;
         mouth = new Mouth(this.size);
         comb = new Comb(this.size);
         eye = new Eye(this.size);
-        number = openMouth ? 2 : 1;
     }
 
     public void drawAt(int left, int bottom) {

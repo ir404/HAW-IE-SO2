@@ -76,11 +76,6 @@ public class ControlPanel extends JPanel implements ChangeListener {
         super.add(new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP)));
     }
 
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        attemptsLabel.setText("No. of attempts (" + attemptsSlider.getValue() + ")");
-    }
-
     public JButton getUpdateBtn() {
         return updateBtn;
     }
@@ -103,5 +98,10 @@ public class ControlPanel extends JPanel implements ChangeListener {
 
     public int getAttempts() {
         return attemptsSlider.getValue();
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        attemptsLabel.setText("No. of attempts (" + attemptsSlider.getValue() + ")");
     }
 }
