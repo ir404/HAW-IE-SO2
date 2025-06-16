@@ -16,15 +16,15 @@ public class Wing {
         this.size = size;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public void drawAt(int left, int bottom) {
         int[] xCoords = {left + size * X_OFFSET, left + size * (X_OFFSET + WIDTH), left + size * (X_OFFSET + (int)(0.5 * WIDTH))};
         int[] yCoords = {bottom + size * Y_OFFSET, bottom + size * Y_OFFSET, bottom + size * (Y_OFFSET + HEIGHT)};
 
         Drawing.pen().setColor(COLOUR);
         Drawing.pen().fillPolygon(xCoords, yCoords, xCoords.length);
-    }
-
-    public int getSize() {
-        return size;
     }
 }

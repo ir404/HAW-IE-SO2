@@ -41,6 +41,15 @@ public class Body {
         }
     }
 
+    public Body(int size, boolean rockets, boolean cowboyBoot) {
+        this.size = size;
+        boot = new Boot(this.size);
+        tail = new Tail(this.size);
+        wing = rockets ? new RocketWing(this.size) : new Wing(this.size);
+        boot = cowboyBoot ? new CowboyBoot(this.size) : new Boot(this.size);
+
+    }
+
     public void drawAt(int left, int bottom) {
         int[] xCoords = {left + size * X_OFFSET, left + size * (X_OFFSET + WIDTH), left + size * (X_OFFSET + (int)(0.5 * WIDTH)), left + size * (X_OFFSET + (int)(0.3 * WIDTH)), left + size * (X_OFFSET - (int)(0.2 * X_OFFSET)), left + size * (X_OFFSET - (int)(0.2 * X_OFFSET)), left + size * X_OFFSET};
         int[] yCoords = {bottom + size * Y_OFFSET, bottom + size * Y_OFFSET, bottom + size * (Y_OFFSET + HEIGHT), bottom + size * (Y_OFFSET + HEIGHT), bottom + size * (Y_OFFSET + (int)(0.5 * HEIGHT)), bottom + size * (Y_OFFSET + (int)(0.2 * HEIGHT)), bottom + size * Y_OFFSET};

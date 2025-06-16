@@ -7,35 +7,37 @@ import java.util.ArrayList;
 
 public class Scene {
     private ArrayList<Rooster> roosters;        // aggregate(s)
+    private int width, height;
+
+    public Scene(int width, int height, int attempts) {
+        this.width = width;
+        this.height = height;
+        roosters = new ArrayList<>();
+        generateRoosters(attempts);
+    }
 
     public Scene(int width, int height) {
-        roosters = new ArrayList<>();
+        this(width, height, 1000);
+    }
 
-        // System.out.printf("Width = %d and Height = %d \n\n", width, height);
-
-        for (int i = 0; i < 1000; ++i) {
-            int x = RandomNumber.between(10, width - 380);
-            int y = RandomNumber.between(10, height - 350);
+    private void generateRoosters(int attempts) {
+        for (int i = 0; i < attempts; ++i) {
+            int x = RandomNumber.between(0, width);
+            int y = RandomNumber.between(0, height);
             int size = RandomNumber.between(1, 2);
 
             Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
+            Rooster  tempRoosterAtBottom = new Rooster(size, new Point(x, height), "Temp Rooster at Bottom");
+            Rooster tempRoosterAtRight = new Rooster(size, new Point(width, y), "Temp Rooster at Right");
 
-            // System.out.printf("Rooster %d with (%d, %d) and size %d \n", i, x, y, size);
-
-            if (i == 0) {
-                roosters.add(newRooster);
+            boolean intersects = newRooster.intersects(tempRoosterAtBottom) || newRooster.intersects(tempRoosterAtRight);
+            int j = 0;
+            while (!intersects && j < roosters.size()) {
+                if (newRooster.intersects(roosters.get(j))) intersects = true;
+                ++j;
             }
-            else {
-                boolean intersects = false;
-                int j = 0;
 
-                while (!intersects && j < roosters.size()) {
-                    if (newRooster.intersects(roosters.get(j))) intersects = true;
-                    ++j;
-                }
-
-                if (!intersects) roosters.add(newRooster);
-            }
+            if (!intersects) roosters.add(newRooster);
         }
     }
 
@@ -43,5 +45,20 @@ public class Scene {
         for (Rooster rooster : roosters) {
             rooster.draw();
         }
+    }
+
+    public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot) {
+        ArrayList<Rooster> tempRoosters = new ArrayList<>();
+
+        for (Rooster rooster : roosters) {
+            int size = rooster.getSize();
+            Point coordinate = rooster.address();
+            String name = rooster.getName();
+
+            rooster = new Rooster(size, coordinate, name, openMouth, rockets, cowboyBoot);
+            tempRoosters.add(rooster);
+        }
+
+        roosters = tempRoosters;
     }
 }
