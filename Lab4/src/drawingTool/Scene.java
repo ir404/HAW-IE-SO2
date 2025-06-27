@@ -1,12 +1,14 @@
 package drawingTool;
 
 import rooster.Rooster;
+import rooster.decorators.BowTieDecorator;
+import rooster.decorators.HatDecorator;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Scene {
-    private ArrayList<Rooster> roosters;        // aggregate(s)
+    private ArrayList<LocatedRectangle> roosters;        // aggregate(s)
     private int width, height;
 
     public Scene(int width, int height, int attempts) {
@@ -26,9 +28,9 @@ public class Scene {
             int y = RandomNumber.between(0, height);
             int size = RandomNumber.between(1, 2);
 
-            Rooster newRooster = new Rooster(size, new Point(x, y), "R_" + i);
-            Rooster  tempRoosterAtBottom = new Rooster(size, new Point(x, height), "Temp Rooster at Bottom");
-            Rooster tempRoosterAtRight = new Rooster(size, new Point(width, y), "Temp Rooster at Right");
+            Rooster newRooster = new Rooster(size, new Point(x, y), Color.YELLOW, Color.DARK_GRAY);
+            Rooster  tempRoosterAtBottom = new Rooster(size, new Point(x, height), Color.YELLOW, Color.DARK_GRAY);
+            Rooster tempRoosterAtRight = new Rooster(size, new Point(width, y), Color.YELLOW, Color.DARK_GRAY);
 
             boolean intersects = newRooster.intersects(tempRoosterAtBottom) || newRooster.intersects(tempRoosterAtRight);
             int j = 0;
@@ -42,20 +44,24 @@ public class Scene {
     }
 
     public void drawRoosters() {
-        for (Rooster rooster : roosters) {
+        for (LocatedRectangle rooster: roosters) {
             rooster.draw();
         }
     }
 
-    public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot) {
-        ArrayList<Rooster> tempRoosters = new ArrayList<>();
+    public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot, boolean hat, boolean bowTie) {
+        ArrayList<LocatedRectangle> tempRoosters = new ArrayList<>();
 
-        for (Rooster rooster : roosters) {
+        for (LocatedRectangle rooster: roosters) {
             int size = rooster.getSize();
             Point coordinate = rooster.address();
-            String name = rooster.getName();
 
-            rooster = new Rooster(size, coordinate, name, openMouth, rockets, cowboyBoot);
+            rooster = new Rooster(size, coordinate, Color.YELLOW, Color.DARK_GRAY, openMouth, rockets, cowboyBoot);
+
+            if (hat) rooster = new HatDecorator(rooster);
+
+            if (bowTie) rooster = new BowTieDecorator(rooster);
+
             tempRoosters.add(rooster);
         }
 

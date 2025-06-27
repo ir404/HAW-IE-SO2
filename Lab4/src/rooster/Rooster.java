@@ -11,59 +11,55 @@ public class Rooster implements LocatedRectangle {
 
     private int size;
     private Point position;
-    private String name;
     private Head head;      // composite
     private Body body;      // composite
 
-    public Rooster(int size, Point placeAt, String roosterName) {
-        initialise(size, placeAt, roosterName);
-        head = new Head(this.size);
+    public Rooster(int size, Point placeAt, Color headColour, Color eyeColour) {
+        initialise(size, placeAt);
+        head = new Head(this.size, headColour, eyeColour);
         body = new Body(this.size);
     }
 
-    public Rooster(int size, Point placeAt, String roosterName, boolean openMouth, boolean rockets, boolean cowboyBoot) {
-        initialise(size, placeAt, roosterName);
-        head = new Head(this.size, openMouth);
+    public Rooster(int size, Point placeAt, Color headColour, Color eyeColour, boolean openMouth, boolean rockets, boolean cowboyBoot) {
+        initialise(size, placeAt);
+        head = new Head(this.size, headColour, eyeColour, openMouth);
         body = new Body(this.size, rockets, cowboyBoot);
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public String getName(){
-        return name;
-    }
-
+    @Override
     public Point address() {
         return position;
     }
 
+    @Override
     public int width() {
         return size * WIDTH;
     }
 
+    @Override
     public int height() {
         return size * HEIGHT;
     }
 
-    private void initialise(int size, Point placeAt, String roosterName) {
+    @Override
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public void draw() {
+        head.drawAt(position.x, position.y);
+        body.drawAt(position.x, position.y);
+//        drawGrid();
+    }
+
+    private void initialise(int size, Point placeAt) {
         if (size < 1)
             this.size = 1;
         else
             this.size = Math.min(size, 3);
 
         position = placeAt;
-        name = roosterName;
-    }
-
-    public void draw() {
-        head.drawAt(position.x, position.y);
-        body.drawAt(position.x, position.y);
-
-        Drawing.pen().setColor(Color.BLACK);
-        Drawing.pen().drawString(name, position.x + size * (int)(0.5 * WIDTH), position.y + (int)(0.25 * HEIGHT));
-        drawGrid();
     }
 
     private void drawGrid() {

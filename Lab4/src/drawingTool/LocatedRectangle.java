@@ -14,6 +14,7 @@ public interface LocatedRectangle {
     public int width();
     public int height();
     public void draw();
+    public int getSize();
 
     public default boolean intersects(LocatedRectangle other) {
         return !doesNotIntersect(other, 0);

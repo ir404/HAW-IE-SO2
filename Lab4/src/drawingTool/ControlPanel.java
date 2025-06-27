@@ -6,20 +6,21 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class ControlPanel extends JPanel implements ChangeListener {
-    private final Color CONTROL_PANEL_COLOUR = Color.CYAN;
+    private final Color CONTROL_PANEL_COLOUR = Color.LIGHT_GRAY;
     private final int UI_GROUP_H_GAP = 5;
     private final int UI_GROUP_V_GAP = 15;
 
-    private JLabel rocketsLabel, openMouthLabel, bootLabel, attemptsLabel;
-    private JCheckBox rocketsCheckBox, openMouthCheckBox;
+    private JLabel rocketsLabel, openMouthLabel, bootLabel, attemptsLabel, hatLabel, bowTieLabel;
+    private JCheckBox rocketsCheckBox, openMouthCheckBox, hatCheckBox, bowTieCheckBox;
     private JComboBox<String> bootComboBox;
     private JButton updateBtn, regenerateBtn;
     private JSlider attemptsSlider;
 
     public void initialise() {
-        Panel attemptsGroup, rocketGroup, openMouthGroup, bootGroup, updateBtnGroup, regenerateBtnGroup;
+        Panel attemptsGroup, rocketGroup, openMouthGroup, bootGroup, updateBtnGroup, regenerateBtnGroup, hatGroup, bowTieGroup;
 
-        setLayout(new GridLayout(2, 4, 20, 0));
+        super.setLayout(new GridLayout(2, 5, 20, 0));
+        super.setBackground(CONTROL_PANEL_COLOUR);
 
         rocketsLabel = new JLabel("Rockets:");
         rocketsCheckBox = new JCheckBox();
@@ -46,6 +47,20 @@ public class ControlPanel extends JPanel implements ChangeListener {
         updateBtn.setPreferredSize(new Dimension(175, 30));
         updateBtnGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
 
+        hatLabel = new JLabel("HatDecorator");
+        hatCheckBox = new JCheckBox();
+        hatCheckBox.setBackground(CONTROL_PANEL_COLOUR);
+        hatGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
+        hatGroup.add(hatLabel);
+        hatGroup.add(hatCheckBox);
+
+        bowTieLabel = new JLabel("Bowtie");
+        bowTieCheckBox = new JCheckBox();
+        bowTieCheckBox.setBackground(CONTROL_PANEL_COLOUR);
+        bowTieGroup = new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP));
+        bowTieGroup.add(bowTieLabel);
+        bowTieGroup.add(bowTieCheckBox);
+
         attemptsSlider = new JSlider(0, 1000, 100);
         attemptsSlider.setBackground(CONTROL_PANEL_COLOUR);
         attemptsSlider.setPaintTrack(true);
@@ -70,10 +85,10 @@ public class ControlPanel extends JPanel implements ChangeListener {
         super.add(openMouthGroup);
         super.add(bootGroup);
         super.add(updateBtnGroup);
-        super.add(new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP)));
+        super.add(hatGroup);
+        super.add(bowTieGroup);
         super.add(attemptsGroup);
         super.add(regenerateBtnGroup);
-        super.add(new Panel(new FlowLayout(FlowLayout.CENTER, UI_GROUP_H_GAP, UI_GROUP_V_GAP)));
     }
 
     public JButton getUpdateBtn() {
@@ -90,6 +105,14 @@ public class ControlPanel extends JPanel implements ChangeListener {
 
     public boolean getOpenMouthState() {
         return openMouthCheckBox.isSelected();
+    }
+
+    public boolean getHatState() {
+        return hatCheckBox.isSelected();
+    }
+
+    public boolean getBowTieState() {
+        return bowTieCheckBox.isSelected();
     }
 
     public boolean getCowboyBootState() {

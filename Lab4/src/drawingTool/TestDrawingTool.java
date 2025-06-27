@@ -24,7 +24,6 @@ public class TestDrawingTool extends JFrame implements ActionListener {
         drawingArea = new DrawingArea(frameWidth, (int) (frameHeight * 0.75));
 
         controlPanel = new ControlPanel();
-        controlPanel.setBackground(Color.CYAN);
         controlPanel.setPreferredSize(new Dimension(frameWidth, (int) (frameHeight * 0.25)));
         controlPanel.initialise();
         controlPanel.getUpdateBtn().addActionListener(this);
@@ -47,13 +46,15 @@ public class TestDrawingTool extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == controlPanel.getUpdateBtn()) {
-            boolean showRockets, showCowboyBoot, showOpenMouth;
+            boolean showRockets, showCowboyBoot, showOpenMouth, showHat, showBowTie;
 
             showRockets = controlPanel.getRocketsState();
             showOpenMouth = controlPanel.getOpenMouthState();
             showCowboyBoot = controlPanel.getCowboyBootState();
+            showHat = controlPanel.getHatState();
+            showBowTie = controlPanel.getBowTieState();
 
-            drawingArea.getScene().updateRoosters(showOpenMouth, showRockets, showCowboyBoot);
+            drawingArea.getScene().updateRoosters(showOpenMouth, showRockets, showCowboyBoot, showHat, showBowTie);
             drawingArea.removeAll();
             drawingArea.repaint();
         } else if (e.getSource() == controlPanel.getRegenerateBtn()) {
