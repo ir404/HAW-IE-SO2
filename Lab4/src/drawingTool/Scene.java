@@ -28,9 +28,9 @@ public class Scene {
             int y = RandomNumber.between(0, height);
             int size = RandomNumber.between(1, 2);
 
-            Rooster newRooster = new Rooster(size, new Point(x, y), Color.YELLOW, Color.DARK_GRAY);
-            Rooster  tempRoosterAtBottom = new Rooster(size, new Point(x, height), Color.YELLOW, Color.DARK_GRAY);
-            Rooster tempRoosterAtRight = new Rooster(size, new Point(width, y), Color.YELLOW, Color.DARK_GRAY);
+            LocatedRectangle newRooster = new Rooster(size, new Point(x, y), Color.YELLOW, Color.DARK_GRAY);
+            LocatedRectangle  tempRoosterAtBottom = new Rooster(size, new Point(x, height), Color.YELLOW, Color.DARK_GRAY);
+            LocatedRectangle tempRoosterAtRight = new Rooster(size, new Point(width, y), Color.YELLOW, Color.DARK_GRAY);
 
             boolean intersects = newRooster.intersects(tempRoosterAtBottom) || newRooster.intersects(tempRoosterAtRight);
             int j = 0;
@@ -39,7 +39,18 @@ public class Scene {
                 ++j;
             }
 
-            if (!intersects) roosters.add(newRooster);
+            if (!intersects) {
+                int number = RandomNumber.between(1, 100);
+
+                if (number % 3 == 0 && number % 5 == 0)
+                    newRooster = new BowTieDecorator(new HatDecorator(newRooster));
+                else if (number % 3 == 0)
+                    newRooster = new BowTieDecorator(newRooster);
+                else
+                    newRooster = new HatDecorator(newRooster);
+
+                roosters.add(newRooster);
+            }
         }
     }
 
@@ -49,14 +60,14 @@ public class Scene {
         }
     }
 
-    public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot, boolean hat, boolean bowTie) {
+    public void updateRoosters(boolean openMouth, boolean rockets, boolean cowboyBoot, boolean hat, boolean bowTie, Color headColour, Color eyeColour) {
         ArrayList<LocatedRectangle> tempRoosters = new ArrayList<>();
 
         for (LocatedRectangle rooster: roosters) {
             int size = rooster.getSize();
             Point coordinate = rooster.address();
 
-            rooster = new Rooster(size, coordinate, Color.YELLOW, Color.DARK_GRAY, openMouth, rockets, cowboyBoot);
+            rooster = new Rooster(size, coordinate, headColour, eyeColour, openMouth, rockets, cowboyBoot);
 
             if (hat) rooster = new HatDecorator(rooster);
 
