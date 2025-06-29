@@ -109,7 +109,6 @@ public class ControlPanel extends JPanel implements ChangeListener {
         formGrid.add(hatGroup);
         formGrid.add(bowTieGroup);
         formGrid.add(updateBtnGroup);
-//        formGrid.add(attemptsGroup);
         formGrid.add(regenerateBtnGroup);
 
         wrapper = new Panel(new FlowLayout(FlowLayout.LEFT));
