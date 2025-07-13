@@ -5,7 +5,7 @@ import drawingTool.LocatedRectangle;
 import java.awt.*;
 
 public abstract class RectangleDecorator implements LocatedRectangle {
-    private LocatedRectangle decoratedLocatedRectangle;
+    private LocatedRectangle decoratedLocatedRectangle;   // aggregate
 
     public RectangleDecorator(LocatedRectangle locatedRectangle) {
         decoratedLocatedRectangle = locatedRectangle;
